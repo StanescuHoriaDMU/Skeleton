@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using ClassLibrary;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 
 
@@ -16,6 +17,7 @@ namespace Testing3
             Assert.IsNotNull(AStaff);
         }
 
+        [TestMethod]
         public void isEmployedOK()
         {
             //create an instance of the class we want to create
@@ -29,6 +31,7 @@ namespace Testing3
         
         }
 
+        [TestMethod]
         public void DateOfBirthOK()
         {
             //create an instance of the class we want to  create
@@ -36,13 +39,14 @@ namespace Testing3
             //create some test data to assign to the property
             DateTime TestData = DateTime.Now.Date;
             //assign the data to the property
-            AStaff.DateOfBirth = TestData;
+            AStaff.DOB = TestData;
             //test to see that the two values are the same
-            Assert.AreEqual(AStaff.DateOfBirth, TestData);
+            Assert.AreEqual(AStaff.DOB, TestData);
 
 
         }
 
+        [TestMethod]
         public void StaffIdOK()
         {
             //create an instance of the property we want to create
@@ -57,7 +61,7 @@ namespace Testing3
 
         }
 
-
+        [TestMethod]
         public void FullNameOK()
         {
             //create an instance of the property we want to create
@@ -73,6 +77,7 @@ namespace Testing3
 
         }
 
+        [TestMethod]
         public void EmailAddressOK()
         {
             //create an instance of the property we want to create
@@ -88,6 +93,7 @@ namespace Testing3
 
         }
 
+        [TestMethod]
         public void UserNameOK()
         {
             //create an instance of the property we want to create
@@ -103,15 +109,56 @@ namespace Testing3
 
         }
 
-
-        public class clsStaff
+        [TestMethod]
+        public void FindMethodOK()
         {
-            public bool Active { get; set; }
-            public DateTime DateOfBirth { get; internal set; }
-            public int StaffID { get; internal set; }
-            public string FullName { get; internal set; }
-            public string EmailAddress { get; internal set; }
-            public string UserName { get; internal set; }
+
+            //create an instance of the class we want to create
+            clsStaff AStaff = new clsStaff();
+            //Boolean variable to store the results of the validation
+            Boolean Found = false;
+            //create some test data to use with the method
+            Int32 StaffID = 21;
+            //invoke the method
+            Found = AStaff.Find(StaffID);
+            //test to see if the result is true
+            Assert.IsTrue(Found);
+
         }
+
+        [TestMethod]
+        public void TestAddressNoFound()
+        {
+            //create an instance of the class we want to create
+            clsStaff AStaff = new clsStaff();
+            //boolean variable to store the result of the search
+            Boolean Found = false;
+            //boolean variable to record if the data is okay (assume it is)
+            Boolean OK = true;
+            //create some test data to use with the method
+            Int32 StaffID = 21;
+            //invoke the method
+            Found = AStaff.Find(StaffID);
+            //check the address no
+            if (AStaff.StaffID != 21)
+            {
+                OK = false;
+            }
+
+            //test to see that the result is correct
+            Assert.IsTrue(OK);
+
+          
+
+
+
+
+
+
+        }
+
+
+
+
     }
 }
