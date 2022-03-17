@@ -61,5 +61,98 @@ namespace Testing2
             ACustomer.Username = TestData;
             Assert.AreEqual(ACustomer.Username, TestData);
         }
+        [TestMethod]
+        public void FindMethodOK()
+        {
+            clsCustomer ACustomer = new clsCustomer();
+            Boolean Found = false;
+            int UserId = 1;
+            Found = ACustomer.Find(UserId);
+            Assert.IsTrue(Found);
+        }
+        [TestMethod]
+        public void TestUserIdFound()
+        {
+            clsCustomer ACustomer = new clsCustomer();
+            Boolean Found = false;
+            Boolean OK = true;
+            int UserId = 1;
+            Found = ACustomer.Find(UserId);
+            if (ACustomer.EmailAdress != "anamaria@yahoo.com")
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+        [TestMethod]
+        public void TestFulllNameFound()
+        {
+            clsCustomer ACustomer = new clsCustomer();
+            Boolean Found = false;
+            Boolean OK = true;
+            int UserId = 1;
+            Found = ACustomer.Find(UserId);
+            if (ACustomer.FullName != "Ana Maria")
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+        [TestMethod]
+        public void TestEmailAddressFound()
+        {
+            clsCustomer ACustomer = new clsCustomer();
+            Boolean Found = false;
+            Boolean OK = true;
+            int UserId = 1;
+            Found = ACustomer.Find(UserId);
+            if (ACustomer.EmailAdress != "anamaria@yahoo.com")
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+        [TestMethod]
+        public void TestDateOfBirthFound()
+        {
+            clsCustomer ACustomer = new clsCustomer();
+            Boolean Found = false;
+            Boolean OK = true;
+            int UserId = 1;
+            Found = ACustomer.Find(UserId);
+            if (ACustomer.DateOfBirth != Convert.ToDateTime("26/01/2001"))
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+        [TestMethod]
+        public void TestUserNameFound()
+        {
+            clsCustomer ACustomer = new clsCustomer();
+            Boolean Found = false;
+            Boolean OK = true;
+            int UserId = 1;
+            Found = ACustomer.Find(UserId);
+            if (ACustomer.Username != "anamaria")
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+        [TestMethod]
+        public void TestVerifiedCustomerFound()
+        {
+            clsCustomer ACustomer = new clsCustomer();
+            Boolean Found = false;
+            Boolean OK = true;
+            int UserId = 1;
+            Found = ACustomer.Find(UserId);
+            if (ACustomer.VerifiedCustomer != true)
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
     }
 }
