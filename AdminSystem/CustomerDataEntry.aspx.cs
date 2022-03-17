@@ -16,7 +16,14 @@ public partial class _1_DataEntry : System.Web.UI.Page
     protected void btnOk_Click(object sender, EventArgs e)
     {
         clsCustomer ACustomer = new clsCustomer();
-        ACustomer.UserId = int.Parse(txtUserId.Text);
+        if(txtUserId.Text.Length == 0)
+        {
+            ACustomer.UserId = 0;
+        }
+        else
+        {
+            ACustomer.UserId = int.Parse(txtUserId.Text);
+        }
         ACustomer.FullName = txtFullName.Text;
         ACustomer.EmailAdress = txtEmailAdress.Text;
         ACustomer.DateOfBirth = DateTime.Parse(txtDateOfBirth.Text);
