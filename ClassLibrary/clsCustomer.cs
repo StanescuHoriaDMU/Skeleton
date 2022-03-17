@@ -105,5 +105,54 @@ namespace ClassLibrary
                 return false;
             }
         }
+
+        public string Valid(string fullName, string emailAdress, string dateOfBirth, string username)
+        {
+            string Error = "";
+            DateTime DateTemp;
+            try
+            {
+                DateTemp = Convert.ToDateTime(dateOfBirth);
+                if (DateTemp > DateTime.Now.Date.AddYears(-18))
+                {
+                    Error = Error + "You must be over 18: ";
+                }
+                if (DateTemp <= DateTime.Now.Date.AddYears(-100))
+                {
+                    Error = Error + "The date cannot be more than 100 years ago : ";
+                }
+            }
+            catch
+            {
+                Error = Error + "The date is not valid";
+            }
+            
+            if(fullName.Length == 0)
+            {
+                Error = Error + "Fullname cannot be empty";
+            }
+            if(fullName.Length > 50)
+            {
+                Error = Error + "Fullname must be less than 50 characters";
+            }
+
+            if (emailAdress.Length == 0)
+            {
+                Error = Error + "emailAdress cannot be empty";
+            }
+            if (emailAdress.Length > 50)
+            {
+                Error = Error + "emailAdress must be less than 50 characters";
+            }
+            if (username.Length == 0)
+            {
+                Error = Error + "username cannot be empty";
+            }
+            if (username.Length > 50)
+            {
+                Error = Error + "username must be less than 50 characters";
+            }
+            return Error;
+        }
     }
 }
