@@ -124,6 +124,33 @@ namespace ClassLibrary
                 return false;
             }
         }
+
+        public string Valid(string staffID, string fullName, string userName, string emailAddress, string dOB)
+        {
+            String Error = "";
+            DateTime DateTemp;
+
+            if (userName.Length == 4) //usernameMinLessOne
+            {
+                Error = Error + "Username must be at least 5 characters : ";
+            }
+            if (userName.Length > 16)
+            {
+                Error = Error + "Username can not be longer than 16 characters";
+            }
+
+            DateTemp = Convert.ToDateTime(DOB);
+            if (DateTemp < DateTime.Now.Date)
+            {
+                Error = Error + "The date cannob be in the past :";
+            }
+            if (DateTemp > DateTime.Now.Date)
+            {
+                Error = Error + "The date cannot be in the future :";
+            }
+            return Error;
+        }
+
     }
 }
     
