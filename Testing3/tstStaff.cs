@@ -8,6 +8,14 @@ namespace Testing3
     [TestClass]
     public class tstStaff
     {
+
+        string StaffID = "2";
+        string FullName = "Joe bloggs";
+        string UserName = "Bloggs123";
+        string EmailAddress = "JoeBloggs222@gmail.com";
+        string DOB = DateTime.Now.Date.ToString();
+
+
         [TestMethod]
         public void InstanceOK()
         {
@@ -28,7 +36,7 @@ namespace Testing3
             AStaff.IsEmployed = TestData;
             //test to see that the two values are the same
             Assert.AreEqual(AStaff.IsEmployed, TestData);
-        
+
         }
 
         [TestMethod]
@@ -262,5 +270,189 @@ namespace Testing3
             Assert.IsTrue(OK);
         }
 
+        [TestMethod]
+
+        public void ValidMethodOK()
+        {
+            clsStaff AStaff = new clsStaff();
+            String Error = "";
+            Error = AStaff.Valid(StaffID, FullName, UserName, EmailAddress, DOB);
+            Assert.AreEqual(Error, "");
+
+
+        }
+
+        [TestMethod]
+
+        public void UserNameMin()
+        {
+            clsStaff aStaff = new clsStaff();
+            String Error = "";
+            string UserName = "uname";
+            Error = aStaff.Valid(StaffID, FullName, UserName, EmailAddress, DOB);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+
+        public void UserNameMax()
+        {
+            clsStaff aStaff = new clsStaff();
+            String Error = "";
+            string UserName = "alexandraisbestt";
+            Error = aStaff.Valid(StaffID, FullName, UserName, EmailAddress, DOB);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+
+        public void UserNameMinLessOne()
+        {
+            clsStaff aStaff = new clsStaff();
+            String Error = "";
+            string UserName = "four";
+            Error = aStaff.Valid(StaffID, FullName, UserName, EmailAddress, DOB);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+
+        public void UserNameMaxPlusOne()
+        {
+            clsStaff aStaff = new clsStaff();
+            String Error = "";
+            string UserName = "oneTwoThreeFouraa";
+            Error = aStaff.Valid(StaffID, FullName, UserName, EmailAddress, DOB);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+
+        public void UserNameMaxLessOne()
+        {
+            clsStaff aStaff = new clsStaff();
+            String Error = "";
+            string UserName = "oneTwoThreeFour";
+            Error = aStaff.Valid(StaffID, FullName, UserName, EmailAddress, DOB);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+
+        public void UserNameMinPlusOne()
+        {
+            clsStaff aStaff = new clsStaff();
+            String Error = "";
+            string UserName = "aaaaaa";
+            Error = aStaff.Valid(StaffID, FullName, UserName, EmailAddress, DOB);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+
+        public void UserNameMid()
+        {
+            clsStaff aStaff = new clsStaff();
+            String Error = "";
+            string UserName = "AAAAAAAA";
+            Error = aStaff.Valid(StaffID, FullName, UserName, EmailAddress, DOB);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+
+        public void UserNameMaxExtreme()
+        {
+            clsStaff aStaff = new clsStaff();
+            String Error = "";
+            string UserName = "";
+            UserName = UserName.PadRight(500, 'a');
+            Error = aStaff.Valid(StaffID, FullName, UserName, EmailAddress, DOB);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+
+        public void DOBExtremeMin()
+        {
+            clsStaff AStaff = new clsStaff();
+            String Error = "";
+            DateTime TestDate;
+            TestDate = DateTime.Now.Date;
+            TestDate = TestDate.AddYears(-100);
+            string DOB = TestDate.ToString();
+            Error = AStaff.Valid(StaffID, FullName, UserName, EmailAddress, DOB);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+
+        public void DOBMinLessOne()
+        {
+            clsStaff AStaff = new clsStaff();
+            String Error = "";
+            DateTime TestDate;
+            TestDate = DateTime.Now.Date;
+            TestDate = TestDate.AddDays(-1);
+            string DOB = TestDate.ToString();
+            Error = AStaff.Valid(StaffID, FullName, UserName, EmailAddress, DOB);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+
+        public void DOBMin()
+        {
+            clsStaff AStaff = new clsStaff();
+            String Error = "";
+            DateTime TestDate;
+            TestDate = DateTime.Now.Date;
+            string DOB = TestDate.ToString();
+            Error = AStaff.Valid(StaffID, FullName, UserName, EmailAddress, DOB);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+
+        public void DOBMinPlusOne()
+        {
+            clsStaff AStaff = new clsStaff();
+            String Error = "";
+            DateTime TestDate;
+            TestDate = DateTime.Now.Date;
+            TestDate = TestDate.AddDays(1);
+            string DOB = TestDate.ToString();
+            Error = AStaff.Valid(StaffID, FullName, UserName, EmailAddress, DOB);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+
+        public void DOBExtremeMax()
+        {
+            clsStaff AStaff = new clsStaff();
+            String Error = "";
+            DateTime TestDate;
+            TestDate = DateTime.Now.Date;
+            TestDate = TestDate.AddYears(100);
+            string DOB = TestDate.ToString();
+            Error = AStaff.Valid(StaffID, FullName, UserName, EmailAddress, DOB);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void DOBInvalidData()
+        {
+            clsStaff AStaff = new clsStaff();
+            String Error = "";
+            string DOB = "this is not a date!";
+            Error = AStaff.Valid(StaffID, FullName, UserName, EmailAddress, DOB);
+            Assert.AreNotEqual(Error, "");
+        }
+
     }
 }
+
+
+
+
