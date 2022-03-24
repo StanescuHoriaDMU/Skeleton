@@ -16,21 +16,27 @@ public partial class _1_DataEntry : System.Web.UI.Page
     protected void btnOk_Click(object sender, EventArgs e)
     {
         clsCustomer ACustomer = new clsCustomer();
-        if(txtUserId.Text.Length == 0)
+       
+        string UserId = txtUserId.Text;
+        string FullName = txtFullName.Text;
+        string EmailAdress = txtEmailAdress.Text;
+        string DateOfBirth = txtDateOfBirth.Text;
+        string Username = txtUsername.Text;
+        string Error = "";
+        Error = ACustomer.Valid(FullName, EmailAdress, DateOfBirth, Username);
+        if(Error == "")
         {
-            ACustomer.UserId = 0;
-        }
-        else
+            ACustomer.FullName = txtFullName.Text;
+            ACustomer.EmailAdress = txtEmailAdress.Text;
+            ACustomer.DateOfBirth = Convert.ToDateTime(txtDateOfBirth.Text);
+            ACustomer.Username = txtUsername.Text;
+            Boolean VerifiedCustomer = checkboxVerifiedCustomer.Checked;
+            Session["ACustomer"] = ACustomer;
+            Response.Redirect("CustomerViewer.aspx");
+        }else
         {
-            ACustomer.UserId = int.Parse(txtUserId.Text);
+            lblError.Text = Error;
         }
-        ACustomer.FullName = txtFullName.Text;
-        ACustomer.EmailAdress = txtEmailAdress.Text;
-        ACustomer.DateOfBirth = DateTime.Parse(txtDateOfBirth.Text);
-        ACustomer.Username = txtUsername.Text;
-        ACustomer.VerifiedCustomer = checkboxVerifiedCustomer.Checked;
-        Session["ACustomer"] = ACustomer;
-        Response.Redirect("CustomerViewer.aspx");
     }
 
     protected void btnFind_Click(object sender, EventArgs e)
