@@ -39,6 +39,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestingCustomer", "Testing2
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestingStock", "Testing1\TestingStock.csproj", "{4186B3B3-EBEA-434E-844F-F79D774C252B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdminSystemTemp2", "AdminSystemTemp2\AdminSystemTemp2.csproj", "{7EBD8039-F631-44F4-9FAD-C55E7D6A56FC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -77,6 +79,10 @@ Global
 		{4186B3B3-EBEA-434E-844F-F79D774C252B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4186B3B3-EBEA-434E-844F-F79D774C252B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4186B3B3-EBEA-434E-844F-F79D774C252B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7EBD8039-F631-44F4-9FAD-C55E7D6A56FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7EBD8039-F631-44F4-9FAD-C55E7D6A56FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7EBD8039-F631-44F4-9FAD-C55E7D6A56FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7EBD8039-F631-44F4-9FAD-C55E7D6A56FC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
