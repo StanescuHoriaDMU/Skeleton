@@ -8,5 +8,10 @@ namespace ClassLibrary
         public double PriceTag { get; set; }
         public bool Sold { get; set; }
         public string Vmodel { get; set; }
+
+        public bool Find(int id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
