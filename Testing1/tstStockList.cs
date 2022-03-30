@@ -2,10 +2,11 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 
+
 namespace Testing1
 {
     [TestClass]
-    public class tstStockList
+    public class TstStockList
     {
         [TestMethod]
         public void InstanceOK()
@@ -74,6 +75,20 @@ namespace Testing1
             aStock.Sold = TestData;
             //test to see that the two values are the same
             Assert.AreEqual(aStock.Sold, TestData);
+        }
+
+        public void FindMethodOK()
+        {
+            //create an instance of the class we want to create 
+            clsStockList aStock = new clsStockList();
+            //Boolean variable to store the results of the validation
+            Boolean Found = false;
+            //create some test data to use with the method
+            Int32 id = 21;
+            //invoke the method 
+            Found = aStock.Find(id);
+            //test to see if the result is true
+            Assert.IsTrue(Found);
         }
 
     }
