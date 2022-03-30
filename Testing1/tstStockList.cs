@@ -16,7 +16,8 @@ namespace Testing1
             //test to see that it exists 
             Assert.IsNotNull(aStock);
         }
-        
+
+        [TestMethod]
         public void ModelOK()
         {
             // create a new instance of the class we want to create 
@@ -29,7 +30,8 @@ namespace Testing1
             Assert.AreEqual(aStock.Vmodel, TestData);
         }
 
-        public void DatePostWasCreated()
+        [TestMethod]
+        public void DatePostWasCreatedOK()
         {
             // create a new instance of the class we want to create 
             clsStockList aStock = new clsStockList();
@@ -41,7 +43,8 @@ namespace Testing1
             Assert.AreEqual(aStock.DateAdded, TestData);
         }
 
-        public void YearOfVehicle()
+        [TestMethod]
+        public void YearOfVehicleOK()
         {
             // create a new instance of the class we want to create 
             clsStockList aStock = new clsStockList();
@@ -53,7 +56,8 @@ namespace Testing1
             Assert.AreEqual(aStock.DateAdded, TestData);
         }
 
-        public void PriceOfVehicle()
+        [TestMethod]
+        public void PriceOfVehicleOK()
         {
             // create a new instance of the class we want to create 
             clsStockList aStock = new clsStockList();
@@ -65,7 +69,8 @@ namespace Testing1
             Assert.AreEqual(aStock.PriceTag, TestData);
         }
 
-        public void IsSold()
+        [TestMethod]
+        public void IsSoldOK()
         {
             // create a new instance of the class we want to create 
             clsStockList aStock = new clsStockList();
@@ -77,6 +82,7 @@ namespace Testing1
             Assert.AreEqual(aStock.Sold, TestData);
         }
 
+        [TestMethod]
         public void FindMethodOK()
         {
             //create an instance of the class we want to create 
@@ -84,12 +90,101 @@ namespace Testing1
             //Boolean variable to store the results of the validation
             Boolean Found = false;
             //create some test data to use with the method
-            Int32 id = 21;
+            int vehicleId = 21;
             //invoke the method 
-            Found = aStock.Find(id);
+            Found = aStock.Find(vehicleId);
             //test to see if the result is true
             Assert.IsTrue(Found);
         }
 
+        [TestMethod]
+        public void TestVehcicleIdNotFound()
+        {
+            clsStockList aStock = new clsStockList();
+            Boolean Found = false;
+            Boolean OK = true;
+            int VehicleId = 1;
+            Found = aStock.Find(VehicleId);
+            if (aStock.VehicleId != 1)
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+        public void TestPostAddedFound()
+        {
+            clsStockList aStock = new clsStockList();
+            Boolean Found = false;
+            Boolean OK = true;
+            int VehicleId = 1;
+            Found = aStock.Find(VehicleId);
+            if (aStock.DateAdded != Convert.ToDateTime("07/01/2015"))
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+        public void TestModelFound()
+        {
+            clsStockList aStock = new clsStockList();
+            Boolean Found = false;
+            Boolean OK = true;
+            int VehicleId = 1;
+            Found = aStock.Find(VehicleId);
+            if (aStock.Vmodel != "bmw")
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+        public void TestYearOfVehicleFound()
+        {
+            clsStockList aStock = new clsStockList();
+            Boolean Found = false;
+            Boolean OK = true;
+            int VehicleId = 1;
+            Found = aStock.Find(VehicleId);
+            if (aStock.YOV != "01/01/2015")
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+        public void TestPriceFound()
+        {
+            clsStockList aStock = new clsStockList();
+            Boolean Found = false;
+            Boolean OK = true;
+            int VehicleId = 1;
+            Found = aStock.Find(VehicleId);
+            if (aStock.PriceTag != 22000)
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+        public void IsSoldFound()
+        {
+            clsStockList aStock = new clsStockList();
+            Boolean Found = false;
+            Boolean OK = true;
+            int VehicleId = 1;
+            Found = aStock.Find(VehicleId);
+            if (aStock.Sold != false)
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
     }
     }
