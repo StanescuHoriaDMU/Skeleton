@@ -89,5 +89,16 @@ namespace ClassLibrary
             //always returns true
             return true;
         }
+
+        //function for the public validation method
+         public string Valid(string VehicleId,
+                             DateTime DateAdded,
+                             string PriceTag,
+                             string Sold,
+                             string VModel);
+        
+        //this function acceots 5 parameters for validation 
+        //the function returns a string containing any error message 
+        //if no errors found then blank string is returned
     }
 }
