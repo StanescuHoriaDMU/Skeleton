@@ -8,6 +8,14 @@ namespace Testing1
     [TestClass]
     public class TstStockList
     {
+
+        string VehicleId = "1";
+        string Model = "bmw";
+        string YOV = DateTime.Now.Date.ToString("07/01/2015");
+        string DatePostWasAdded = DateTime.Now.Date.ToString("07/01/2015");
+        string Price = "22000";
+        
+
         [TestMethod]
         public void InstanceOK()
         {
@@ -186,5 +194,17 @@ namespace Testing1
             }
             Assert.IsTrue(OK);
         }
+
+        [TestMethod]
+        public void ValidMethodOK()
+        {
+            //cretae a new instance of the class we want to create 
+            clsStockList aStock = new clsStockList();
+            //string variable to store any error message 
+            String Error = "";
+            //invoke the method 
+            Error = aStock.Valid(VehicleId, Model, YOV, DatePostWasAdded, Price);   )
+
+        }
     }
-    }
+}
