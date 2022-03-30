@@ -129,8 +129,12 @@ namespace ClassLibrary
         {
             String Error = "";
             DateTime DateTemp;
+            DateTime DateTest;
 
-            if (userName.Length == 4) //usernameMinLessOne
+            DateTest = DateTime.Now.Date; 
+            DateTest = DateTest.AddYears(-100);
+
+            if (userName.Length < 5) //usernameMinLessOne
             {
                 Error = Error + "Username must be at least 5 characters : ";
             }
@@ -139,18 +143,36 @@ namespace ClassLibrary
                 Error = Error + "Username can not be longer than 16 characters";
             }
 
-            DateTemp = Convert.ToDateTime(DOB);
-            if (DateTemp < DateTime.Now.Date)
+
+            try
             {
-                Error = Error + "The date cannob be in the past :";
+                DateTemp = Convert.ToDateTime(DOB);
+                if (DateTemp < DateTest)
+                {
+                    Error = Error + "The date cannot be over 100 years in the past :";
+                }
+                if (DateTemp > DateTime.Now.Date)
+                {
+                    Error = Error + "The date cannot be in the future :";
+                }
             }
-            if (DateTemp > DateTime.Now.Date)
+
+            catch {
+                Error = Error + "The date was not a valid date : ";
+            }
+
+            if (FullName.Length < 1)
             {
-                Error = Error + "The date cannot be in the future :";
+                Error = Error + "Full name must be at least 2 characters : ";
+            }    
+            if (FullName.Length > 50)
+            {
+                Error = Error + "Full name must be no longer than 50 characters :";
             }
             return Error;
         }
 
+       
     }
 }
     
