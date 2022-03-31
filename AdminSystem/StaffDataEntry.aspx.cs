@@ -28,6 +28,14 @@ public partial class _1_DataEntry : System.Web.UI.Page
         AStaff.EmailAddress = txtEmailAddress.Text;
         AStaff.UserName = txtUserName.Text;
         AStaff.DOB = DateTime.Parse(txtDOB.Text);
+        String Error = "";
+        Error = AStaff.Valid(staffID, fullName, userName, emailAddress, dOB);
+        if (Error == "")
+        {
+
+
+
+        }
         Session["AStaff"] = AStaff;
         Response.Redirect("StaffViewer.aspx");
 
