@@ -225,15 +225,35 @@ namespace Testing1
 
         [TestMethod]
 
-        public void VehicleModelMax()
+        public void VehicleModelMin()
         {
             clsStockList aStock = new clsStockList();
             String Error = "";
-            string Model = "1111111111111111111111111111111111111111111111111a";
+            string Model = "a";
             Error = aStock.Valid(VehicleId, Model, YOV, DatePostWasAdded, Price);
             Assert.AreEqual(Error, "");
         }
 
+        [TestMethod]
+        public void VehicleModelMinPlusOne()
+        {
+            clsStockList aStock = new clsStockList();
+            String Error = "";
+            string Model = "1"; // i have chosen that i need min to be 15 characters
+            Error = aStock.Valid(VehicleId, Model, YOV, DatePostWasAdded, Price);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+
+        public void VehicleModelMaxLessOne()
+        {
+            clsStockList aStock = new clsStockList();
+            String Error = "";
+            string Model = "OneTwoThreeFourFiveSixSevenEightNineTen ........49";
+            Error = aStock.Valid(VehicleId, Model, YOV, DatePostWasAdded, Price);
+            Assert.AreEqual(Error, "");
+        }
 
         [TestMethod]
 
@@ -248,22 +268,11 @@ namespace Testing1
 
         [TestMethod]
 
-        public void VehicleModelMaxLessOne()
+        public void VehicleModelMax()
         {
             clsStockList aStock = new clsStockList();
             String Error = "";
-            string Model = "111111111111111111111111111111111111111111111111";
-            Error = aStock.Valid(VehicleId, Model, YOV, DatePostWasAdded, Price);
-            Assert.AreEqual(Error, "");
-        }
-
-        [TestMethod]
-
-        public void VehicleModelMinPlusOne()
-        {
-            clsStockList aStock = new clsStockList();
-            String Error = "";
-            string Model = "123456789012345"; // i have chosen that i need min to be 15 characters
+            string Model = "bmwbmw";
             Error = aStock.Valid(VehicleId, Model, YOV, DatePostWasAdded, Price);
             Assert.AreEqual(Error, "");
         }
@@ -274,7 +283,7 @@ namespace Testing1
         {
             clsStockList aStock = new clsStockList();
             String Error = "";
-            string Model = "bmw 1 series";
+            string Model = "bmw";
             Error = aStock.Valid(VehicleId, Model, YOV, DatePostWasAdded, Price);
             Assert.AreEqual(Error, "");
         }
@@ -290,5 +299,113 @@ namespace Testing1
             Error = aStock.Valid(VehicleId, Model, YOV, DatePostWasAdded, Price);
             Assert.AreEqual(Error, "");
         }
+
+        [TestMethod]
+        public void DatePostWasAddedExtremeMin()
+        {
+            clsStockList aStock = new clsStockList();
+            string Error = "";
+            DateTime TestDate;
+            TestDate = DateTime.Now.Date;
+            TestDate = TestDate.AddYears(-100);
+            string DateAdded = TestDate.ToString();
+            Error = aStock.Valid(VehicleId, Model, YOV, DatePostWasAdded, Price);
+            Assert.AreEqual(Error, "");
+
+        }
+
+        [TestMethod]
+        public void DatePostWasAddedMinLessOne()
+        {
+            clsStockList aStock = new clsStockList();
+            string Error = "";
+            DateTime TestDate;
+            TestDate = DateTime.Now.Date;
+            TestDate = TestDate.AddYears(-1);
+            string DateAdded = TestDate.ToString();
+            Error = aStock.Valid(VehicleId, Model, YOV, DatePostWasAdded, Price);
+            Assert.AreEqual(Error, "");
+
+        }
+
+        [TestMethod]
+        public void DateAPostWasAddedMin()
+        {
+            //create an instance of the class we want to create
+            clsStockList aStock = new clsStockList();
+            //string variable to store any error message
+            String Error = "";
+            //create a variable to store the test date data
+            DateTime TestDate;
+            //set the date totodays date
+            TestDate = DateTime.Now.Date;
+            //convert the date variable to a string variable
+            string DateAdded = TestDate.ToString();
+            //invoke the method
+            Error = aStock.Valid(VehicleId, Model, YOV, DatePostWasAdded, Price);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void DatePostWasAddedMinPlusOne()
+        {
+            //create an instance of the class we want to create
+            clsStockList aStock = new clsStockList();
+            //string variable to store any error message
+            String Error = "";
+            //create a variable to store the test date data
+            DateTime TestDate;
+            //set the date totodays date
+            TestDate = DateTime.Now.Date;
+            //change the date to whatever the date is plus 1 day
+            TestDate = TestDate.AddDays(1);
+            //convert the date variable to a string variable
+            string DateAdded = TestDate.ToString();
+            //invoke the method
+            Error = aStock.Valid(VehicleId, Model, YOV, DatePostWasAdded, Price);
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void DatePostWasAddedExtremeMax()
+        {
+            //create an instance of the class we want to create
+            clsStockList aStock = new clsStockList();
+            //string variable to store any error message
+            String Error = "";
+            //create a variable to store the test date data
+            DateTime TestDate;
+            //set the date totodays date
+            TestDate = DateTime.Now.Date;
+            //change the date to whatever the date is plus 100 years
+            TestDate = TestDate.AddYears(100);
+            //convert the date variable to a string variable
+            string DateAdded = TestDate.ToString();
+            //invoke the method
+            Error = aStock.Valid(VehicleId, Model, YOV, DatePostWasAdded, Price);
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void DatePostWasAddedInvalidData()
+        {
+            //create an instance of the class we want to create
+            clsStockList aStock = new clsStockList();
+            //string variable to store any error message
+            String Error = "";
+            //set the date added into a non date value
+            string DateAdded = "this is not a date!";
+            //invoke the method
+            Error = aStock.Valid(VehicleId, Model, YOV, DatePostWasAdded, Price);
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+
+
+
+
     }
 }

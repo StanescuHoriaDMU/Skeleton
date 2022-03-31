@@ -77,6 +77,7 @@ namespace ClassLibrary
         }
 
         public string YOV { get; set; }
+        public int DateTemp { get; private set; }
 
         public bool Find(int VehicleId)
         {
@@ -93,26 +94,52 @@ namespace ClassLibrary
         {
             //create a string variable to store the error
             String Error = "";
+            //temporary variable to store date values
+            DateTime DateTemp;
             //if the vehcileId is blank 
             if(vehicleId.Length == 0)
             {
                 //record error
                 Error = Error + "The VehicleId may not be blank: ";
             }
-            if (vehicleId.Length > 50)
+            if (vehicleId.Length > 6)
             {
                 //record error
                 Error = Error + "The VehicleId must be less than 50 characters";
             }
                 //return error message
                 return Error;
+
+            try
+            {
+                DateTemp = Convert.ToDateTime(datePostWasAdded);
+                if (DateTemp < DateTime.Now.Date)
+                {
+                    Error = Error + "The date cannot be over 100 years in the past :";
+                }
+                if (DateTemp > DateTime.Now.Date)
+                {
+                    Error = Error + "The date cannot be in the future :";
+                }
+            }
+
+            catch
+            {
+                Error = Error + "The date was not a valid date : ";
+            }
+
+            if (datePostWasAdded.Length < 1)
+            {
+                Error = Error + "Full name must be at least 2 characters : ";
+            }
+            if (datePostWasAdded.Length > 50)
+            {
+                Error = Error + "Full name must be no longer than 50 characters :";
+            }
+            return Error;
         }
 
-         
-      
-
-        //this function acceots 5 parameters for validation 
-        //the function returns a string containing any error message 
-        //if no errors found then blank string is returned
     }
-}
+
+     
+    }
