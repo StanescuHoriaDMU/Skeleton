@@ -201,10 +201,94 @@ namespace Testing1
             //cretae a new instance of the class we want to create 
             clsStockList aStock = new clsStockList();
             //string variable to store any error message 
-            String Error = "";
+            string Error = "";
             //invoke the method 
-            Error = aStock.Valid(VehicleId, Model, YOV, DatePostWasAdded, Price);   )
+            Error = aStock.Valid(VehicleId, Model, YOV, DatePostWasAdded, Price);
+            //test to see if the result is correct
+            Assert.AreEqual(Error, "");
+        }
 
+        [TestMethod]
+        public void VehicleIdMin()
+        {
+            //cretae a new instance of the class we want to create 
+            clsStockList aStock = new clsStockList();
+            //string variable to store any error message 
+            string Error = "";
+            //test data to pass the method 
+            string VehicleId = "";//should trigger an error 
+            //invoke the method 
+            Error = aStock.Valid(VehicleId, Model, YOV, DatePostWasAdded, Price);
+            //test to see if the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+
+        public void VehicleModelMax()
+        {
+            clsStockList aStock = new clsStockList();
+            String Error = "";
+            string Model = "1111111111111111111111111111111111111111111111111a";
+            Error = aStock.Valid(VehicleId, Model, YOV, DatePostWasAdded, Price);
+            Assert.AreEqual(Error, "");
+        }
+
+
+        [TestMethod]
+
+        public void vehicleModelMaxPlusOne()
+        {
+            clsStockList aStock = new clsStockList();
+            String Error = "";
+            string Model = "1111111111111111111111111111111111111111111111111aEeee";
+            Error = aStock.Valid(VehicleId, Model, YOV, DatePostWasAdded, Price);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+
+        public void VehicleModelMaxLessOne()
+        {
+            clsStockList aStock = new clsStockList();
+            String Error = "";
+            string Model = "111111111111111111111111111111111111111111111111";
+            Error = aStock.Valid(VehicleId, Model, YOV, DatePostWasAdded, Price);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+
+        public void VehicleModelMinPlusOne()
+        {
+            clsStockList aStock = new clsStockList();
+            String Error = "";
+            string Model = "123456789012345"; // i have chosen that i need min to be 15 characters
+            Error = aStock.Valid(VehicleId, Model, YOV, DatePostWasAdded, Price);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+
+        public void VehicleModelMid()
+        {
+            clsStockList aStock = new clsStockList();
+            String Error = "";
+            string Model = "bmw 1 series";
+            Error = aStock.Valid(VehicleId, Model, YOV, DatePostWasAdded, Price);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+
+        public void VehicleModelMaxExtreme()
+        {
+            clsStockList aStock = new clsStockList();
+            String Error = "";
+            string Model = "";
+            Model = Model.PadRight(500, 'a');
+            Error = aStock.Valid(VehicleId, Model, YOV, DatePostWasAdded, Price);
+            Assert.AreEqual(Error, "");
         }
     }
 }
