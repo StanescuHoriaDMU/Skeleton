@@ -11,7 +11,7 @@ namespace ClassLibrary
         private String mUserName;
         private DateTime mDOB;
         private Boolean mIsEmployed;
-        
+
 
         public Int32 StaffID
         {
@@ -118,7 +118,7 @@ namespace ClassLibrary
                 return true;
             }
             //if no record was found
-            else 
+            else
             {
                 //return false indicating a problem
                 return false;
@@ -131,10 +131,11 @@ namespace ClassLibrary
             DateTime DateTemp;
             DateTime DateTest;
 
-            DateTest = DateTime.Now.Date; 
+            DateTest = DateTime.Now.Date;
             DateTest = DateTest.AddYears(-100);
 
-            if (userName.Length < 5) //usernameMinLessOne
+            //USERNAME
+            if (userName.Length < 5) 
             {
                 Error = Error + "Username must be at least 5 characters : ";
             }
@@ -143,7 +144,7 @@ namespace ClassLibrary
                 Error = Error + "Username can not be longer than 16 characters";
             }
 
-
+            //DOB
             try
             {
                 DateTemp = Convert.ToDateTime(DOB);
@@ -161,16 +162,42 @@ namespace ClassLibrary
                 Error = Error + "The date was not a valid date : ";
             }
 
-            if (FullName.Length < 1)
+            //FULLNAME
+            if (fullName.Length < 2)
             {
                 Error = Error + "Full name must be at least 2 characters : ";
-            }    
-            if (FullName.Length > 50)
-            {
-                Error = Error + "Full name must be no longer than 50 characters :";
             }
-            return Error;
-        }
+            if (fullName.Length > 50)
+            {
+                Error = Error + "Full name must be no longer than 50 characters : ";
+            }
+
+            //EMAILADDRESS
+            if (emailAddress.Length < 6)
+            {
+                Error = Error + "Email Address must be at least 6 characters : ";
+            }
+            if (emailAddress.Length > 320)
+            {
+                Error = Error + "Email Address can not be longer than 320 characters : ";
+            }    
+
+            //STAFFID
+            if (staffID.Length < 0)
+            {
+                Error = Error + "StaffID must be greater than 0 : ";
+            }
+            if (staffID.Length > 999999999)
+            {
+                Error = Error + "StaffID can not be greater than 999999999 : ";
+            }
+
+            //Return any error messages
+                return Error;
+             }
+
+    }
+            
 
        
     }

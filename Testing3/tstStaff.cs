@@ -658,7 +658,7 @@ namespace Testing3
         {
             clsStaff aStaff = new clsStaff();
             String Error = "";
-            string StaffID = "9999999999";
+            string StaffID = "999999999";
             Error = aStaff.Valid(StaffID, FullName, UserName, EmailAddress, DOB);
             Assert.AreEqual(Error, "");
         }
@@ -680,7 +680,7 @@ namespace Testing3
         {
             clsStaff aStaff = new clsStaff();
             String Error = "";
-            string StaffID = "10000000000";
+            string StaffID = "1000000000";
             Error = aStaff.Valid(StaffID, FullName, UserName, EmailAddress, DOB);
             Assert.AreNotEqual(Error, "");
         }
@@ -691,7 +691,7 @@ namespace Testing3
         {
             clsStaff aStaff = new clsStaff();
             String Error = "";
-            string StaffID = "9999999998";
+            string StaffID = "999999998";
             Error = aStaff.Valid(StaffID, FullName, UserName, EmailAddress, DOB);
             Assert.AreEqual(Error, "");
         }
@@ -713,7 +713,7 @@ namespace Testing3
         {
             clsStaff aStaff = new clsStaff();
             String Error = "";
-            string StaffID = "4999999999";
+            string StaffID = "499999999";
             Error = aStaff.Valid(StaffID, FullName, UserName, EmailAddress, DOB);
             Assert.AreEqual(Error, "");
         }
