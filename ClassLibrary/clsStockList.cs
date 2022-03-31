@@ -89,14 +89,28 @@ namespace ClassLibrary
             //always returns true
             return true;
         }
+        public string Valid(string vehicleId, string model, string YOV, string datePostWasAdded, string price)
+        {
+            //create a string variable to store the error
+            String Error = "";
+            //if the vehcileId is blank 
+            if(vehicleId.Length == 0)
+            {
+                //record error
+                Error = Error + "The VehicleId may not be blank: ";
+            }
+            if (vehicleId.Length > 50)
+            {
+                //record error
+                Error = Error + "The VehicleId must be less than 50 characters";
+            }
+                //return error message
+                return Error;
+        }
 
-        //function for the public validation method
-         public string Valid(string VehicleId,
-                             DateTime DateAdded,
-                             string PriceTag,
-                             string Sold,
-                             string VModel);
-        
+         
+      
+
         //this function acceots 5 parameters for validation 
         //the function returns a string containing any error message 
         //if no errors found then blank string is returned
