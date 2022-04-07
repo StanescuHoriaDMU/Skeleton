@@ -12,15 +12,64 @@ public partial class _1_DataEntry : System.Web.UI.Page
     {
 
     }
+
     protected void btnOK_Click(object sender, EventArgs e)
     {
-        //A new instance of clsStock
         clsStockList aStock = new clsStockList();
-        //capture the vehicle id 
-        aStock.Vmodel = txtVehicleId.Text;
-        //store the vehicle id in the session object
-        Session["aStock"] = aStock;
-        //navigate to the viewer page 
+        if (txtVehicleId.Text.Length == 0)
+        {
+            aStock.VehicleId = 0;
+        }
+        else
+        {
+            aStock.VehicleId = int.Parse(txtVehicleId.Text);
+        }
+        aStock.YOV = txtYOV.Text;
+        aStock.Vmodel = txtVModel.Text;
+        aStock.PriceTag = txtPrice.Text;
+        aStock.DateAdded = DateTime.Parse(txtDatePostWasAdded.Text);
+        String Error = "";
+        Error = aStock.Valid(vehicleId, model, YOV, datePostWasAdded, price) ;
+        if (Error == "")
+        {
+
+
+
+        }
+        Session["AStaff"] = aStock;
         Response.Redirect("StockViewer.aspx");
+
     }
-}
+
+    protected void btnFind_Click(object sender, EventArgs e)
+    {
+
+        clsStockList aStock = new clsStockList();
+        Int32 VehicleId;
+        Boolean Found = false;
+        if (txtVehicleId.Text.Length == 0)
+        {
+            VehicleId = 0;
+        }
+        else
+        {
+            VehicleId = Convert.ToInt32(txtStaffNo.Text);
+        }
+        VehicleId = Convert.ToInt32(txtVehicleId.Text);
+        Found = aStock.Find(VehicleId);
+        //if found
+        if (Found == true)
+        {
+            //display the values of the properties in the form
+            txtVehicleId.Text = aStock.VehicleId.ToString();
+            txtPostWasAdded.Text = aStock.DateAdded.ToString();
+            txtPrice.Text = aStock.PriceTag;
+            txtModel.Text = aStock.Vmodel;
+            
+        }
+        else
+        {
+            throw new InvalidOperationException("VehicleId could not be found");
+        }
+
+    }
