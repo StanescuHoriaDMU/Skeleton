@@ -270,6 +270,7 @@ namespace Testing2
             Error = ACustomer.Valid(FullName, EmailAdress, DateOfBirth, Username);
             Assert.AreEqual(Error, "");
         }
+        [TestMethod]
         public void FullNameMax()
         {
             clsCustomer ACustomer = new clsCustomer();
@@ -278,19 +279,48 @@ namespace Testing2
             Error = ACustomer.Valid(FullName, EmailAdress, DateOfBirth, Username);
             Assert.AreEqual(Error, "");
         }
+        [TestMethod]
         public void FullNameMaxPlusOne()
         {
             clsCustomer ACustomer = new clsCustomer();
             string Error = "";
-            string FullName = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
+            string FullName = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
             Error = ACustomer.Valid(FullName, EmailAdress, DateOfBirth, Username);
             Assert.AreNotEqual(Error, "");
         }
+        [TestMethod]
         public void FullNameMid()
         {
             clsCustomer ACustomer = new clsCustomer();
             string Error = "";
             string FullName = "aaaaaaaaaaaaaaaaaaa";
+            Error = ACustomer.Valid(FullName, EmailAdress, DateOfBirth, Username);
+            Assert.AreEqual(Error, "");
+        }
+        [TestMethod]
+        public void EmailAdressMinLessOne()
+        {
+            clsCustomer ACustomer = new clsCustomer();
+            string Error = "";
+            string EmailAdress = "";
+            Error = ACustomer.Valid(FullName, EmailAdress, DateOfBirth, Username);
+            Assert.AreNotEqual(Error, "");
+        }
+        [TestMethod]
+        public void EmailAdressMin()
+        {
+            clsCustomer ACustomer = new clsCustomer();
+            string Error = "";
+            string EmailAdress = "a";
+            Error = ACustomer.Valid(FullName, EmailAdress, DateOfBirth, Username);
+            Assert.AreEqual(Error, "");
+        }
+        [TestMethod]
+        public void EmailAdressMinPlusOne()
+        {
+            clsCustomer ACustomer = new clsCustomer();
+            string Error = "";
+            string EmailAdress = "aa";
             Error = ACustomer.Valid(FullName, EmailAdress, DateOfBirth, Username);
             Assert.AreEqual(Error, "");
         }
@@ -303,6 +333,7 @@ namespace Testing2
             Error = ACustomer.Valid(FullName, EmailAdress, DateOfBirth, Username);
             Assert.AreEqual(Error, "");
         }
+        [TestMethod]
         public void EmailAdressMax()
         {
             clsCustomer ACustomer = new clsCustomer();
@@ -311,19 +342,48 @@ namespace Testing2
             Error = ACustomer.Valid(FullName, EmailAdress, DateOfBirth, Username);
             Assert.AreEqual(Error, "");
         }
+        [TestMethod]
         public void EmailAdressMaxPlusOne()
         {
             clsCustomer ACustomer = new clsCustomer();
             string Error = "";
-            string EmailAdress = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
+            string EmailAdress = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
             Error = ACustomer.Valid(FullName, EmailAdress, DateOfBirth, Username);
             Assert.AreNotEqual(Error, "");
         }
+        [TestMethod]
         public void EmailAdressMid()
         {
             clsCustomer ACustomer = new clsCustomer();
             string Error = "";
             string EmailAdress = "aaaaaaaaaaaaaaaaaaa";
+            Error = ACustomer.Valid(FullName, EmailAdress, DateOfBirth, Username);
+            Assert.AreEqual(Error, "");
+        }
+        [TestMethod]
+        public void UsernameeMinLessOne()
+        {
+            clsCustomer ACustomer = new clsCustomer();
+            string Error = "";
+            string Username = "";
+            Error = ACustomer.Valid(FullName, EmailAdress, DateOfBirth, Username);
+            Assert.AreNotEqual(Error, "");
+        }
+        [TestMethod]
+        public void UsernameMin()
+        {
+            clsCustomer ACustomer = new clsCustomer();
+            string Error = "";
+            string Username = "a";
+            Error = ACustomer.Valid(FullName, EmailAdress, DateOfBirth, Username);
+            Assert.AreEqual(Error, "");
+        }
+        [TestMethod]
+        public void UsernameMinPlusOne()
+        {
+            clsCustomer ACustomer = new clsCustomer();
+            string Error = "";
+            string Username = "aa";
             Error = ACustomer.Valid(FullName, EmailAdress, DateOfBirth, Username);
             Assert.AreEqual(Error, "");
         }
@@ -336,6 +396,7 @@ namespace Testing2
             Error = ACustomer.Valid(FullName, EmailAdress, DateOfBirth, Username);
             Assert.AreEqual(Error, "");
         }
+        [TestMethod]
         public void UsernameMax()
         {
             clsCustomer ACustomer = new clsCustomer();
@@ -344,14 +405,16 @@ namespace Testing2
             Error = ACustomer.Valid(FullName, EmailAdress, DateOfBirth, Username);
             Assert.AreEqual(Error, "");
         }
+        [TestMethod]
         public void UsernameMaxPlusOne()
         {
             clsCustomer ACustomer = new clsCustomer();
             string Error = "";
-            string Username = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
+            string Username = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
             Error = ACustomer.Valid(FullName, EmailAdress, DateOfBirth, Username);
             Assert.AreNotEqual(Error, "");
         }
+        [TestMethod]
         public void UsernameMid()
         {
             clsCustomer ACustomer = new clsCustomer();
