@@ -29,6 +29,7 @@ public class clsDataConnection
     public clsDataConnection()
     {
         connectionString = GetConnectionString();
+
     }
 
     private string GetConnectionString()
