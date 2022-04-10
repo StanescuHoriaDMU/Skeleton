@@ -379,7 +379,7 @@ namespace Testing3
             String Error = "";
             DateTime TestDate;
             TestDate = DateTime.Now.Date;
-            TestDate = TestDate.AddYears(-100);
+            TestDate = TestDate.AddYears(-200);
             string DOB = TestDate.ToString();
             Error = AStaff.Valid(StaffID, FullName, UserName, EmailAddress, DOB);
             Assert.AreNotEqual(Error, "");
@@ -393,7 +393,7 @@ namespace Testing3
             String Error = "";
             DateTime TestDate;
             TestDate = DateTime.Now.Date;
-            TestDate = TestDate.AddDays(-1);
+            TestDate = TestDate.AddYears(-101);
             string DOB = TestDate.ToString();
             Error = AStaff.Valid(StaffID, FullName, UserName, EmailAddress, DOB);
             Assert.AreNotEqual(Error, "");
@@ -407,6 +407,21 @@ namespace Testing3
             String Error = "";
             DateTime TestDate;
             TestDate = DateTime.Now.Date;
+            TestDate = TestDate.AddYears(-100)
+            string DOB = TestDate.ToString();
+            Error = AStaff.Valid(StaffID, FullName, UserName, EmailAddress, DOB);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+
+        public void DOBMid()
+        {
+            clsStaff AStaff = new clsStaff();
+            String Error = "";
+            DateTime TestDate;
+            TestDate = DateTime.Now.Date;
+            TestDate = TestDate.AddYears(-50)
             string DOB = TestDate.ToString();
             Error = AStaff.Valid(StaffID, FullName, UserName, EmailAddress, DOB);
             Assert.AreEqual(Error, "");
@@ -420,7 +435,7 @@ namespace Testing3
             String Error = "";
             DateTime TestDate;
             TestDate = DateTime.Now.Date;
-            TestDate = TestDate.AddDays(1);
+            TestDate = TestDate.AddYears(-99);
             string DOB = TestDate.ToString();
             Error = AStaff.Valid(StaffID, FullName, UserName, EmailAddress, DOB);
             Assert.AreEqual(Error, "");
@@ -434,11 +449,53 @@ namespace Testing3
             String Error = "";
             DateTime TestDate;
             TestDate = DateTime.Now.Date;
-            TestDate = TestDate.AddYears(100);
+            TestDate = TestDate.AddYears(200);
             string DOB = TestDate.ToString();
             Error = AStaff.Valid(StaffID, FullName, UserName, EmailAddress, DOB);
             Assert.AreNotEqual(Error, "");
         }
+
+        [TestMethod]
+
+        public void DOBMaxLessOne()
+        {
+            clsStaff AStaff = new clsStaff();
+            String Error = "";
+            DateTime TestDate;
+            TestDate = DateTime.Now.Date;
+            TestDate = TestDate.AddYears(-1);
+            string DOB = TestDate.ToString();
+            Error = AStaff.Valid(StaffID, FullName, UserName, EmailAddress, DOB);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+
+        public void DOBMax()
+        {
+            clsStaff AStaff = new clsStaff();
+            String Error = "";
+            DateTime TestDate;
+            TestDate = DateTime.Now.Date;
+            string DOB = TestDate.ToString();
+            Error = AStaff.Valid(StaffID, FullName, UserName, EmailAddress, DOB);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+
+        public void DOBMaxPlusOne()
+        {
+            clsStaff AStaff = new clsStaff();
+            String Error = "";
+            DateTime TestDate;
+            TestDate = DateTime.Now.Date;
+            TestDate = TestDate.AddYears(1);
+            string DOB = TestDate.ToString();
+            Error = AStaff.Valid(StaffID, FullName, UserName, EmailAddress, DOB);
+            Assert.AreNotEqual(Error, "");
+        }
+
 
         [TestMethod]
         public void DOBInvalidData()
@@ -449,6 +506,208 @@ namespace Testing3
             Error = AStaff.Valid(StaffID, FullName, UserName, EmailAddress, DOB);
             Assert.AreNotEqual(Error, "");
         }
+
+
+
+
+
+
+
+        [TestMethod]
+
+        public void FullNameMin()
+        {
+            clsStaff aStaff = new clsStaff();
+            String Error = "";
+            string FullName = "aa";
+            Error = aStaff.Valid(StaffID, FullName, UserName, EmailAddress, DOB);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+
+        public void FullNameMax()
+        {
+            clsStaff aStaff = new clsStaff();
+            String Error = "";
+            string FullName = "";
+            FullName = FullName.PadRight(50, 'a');
+            Error = aStaff.Valid(StaffID, FullName, UserName, EmailAddress, DOB);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+
+        public void FullNameMinLessOne()
+        {
+            clsStaff aStaff = new clsStaff();
+            String Error = "";
+            string FullName = "f";
+            Error = aStaff.Valid(StaffID, FullName, UserName, EmailAddress, DOB);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+
+        public void FullNameMaxPlusOne()
+        {
+            clsStaff aStaff = new clsStaff();
+            String Error = "";
+            string FullName = "";
+            FullName = FullName.PadRight(51, 'a');
+            Error = aStaff.Valid(StaffID, FullName, UserName, EmailAddress, DOB);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+
+        public void FullNameMaxLessOne()
+        {
+            clsStaff aStaff = new clsStaff();
+            String Error = "";
+            string FullName = "";
+            FullName = FullName.PadRight(49, 'a');
+            Error = aStaff.Valid(StaffID, FullName, UserName, EmailAddress, DOB);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+
+        public void FullNameMinPlusOne()
+        {
+            clsStaff aStaff = new clsStaff();
+            String Error = "";
+            string FullName = "aaa";
+            Error = aStaff.Valid(StaffID, FullName, UserName, EmailAddress, DOB);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+
+        public void FullNameMid()
+        {
+            clsStaff aStaff = new clsStaff();
+            String Error = "";
+            string FullName = "";
+            FullName = FullName.PadRight(25, 'a');
+            Error = aStaff.Valid(StaffID, FullName, UserName, EmailAddress, DOB);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+
+        public void FullNameMaxExtreme()
+        {
+            clsStaff aStaff = new clsStaff();
+            String Error = "";
+            string FullName = "";
+            FullName = FullName.PadRight(500, 'a');
+            Error = aStaff.Valid(StaffID, FullName, UserName, EmailAddress, DOB);
+            Assert.AreNotEqual(Error, "");
+        }
+
+
+
+
+
+
+
+        [TestMethod]
+
+        public void EmailAddressMin()
+        {
+            clsStaff aStaff = new clsStaff();
+            String Error = "";
+            string EmailAddress = "a@a";
+            Error = aStaff.Valid(StaffID, FullName, UserName, EmailAddress, DOB);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+
+        public void EmailAddressMax()
+        {
+            clsStaff aStaff = new clsStaff();
+            String Error = "";
+            string EmailAddress = "";
+            EmailAddress = EmailAddress.PadRight(320, 'a');
+            Error = aStaff.Valid(StaffID, FullName, UserName, EmailAddress, DOB);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+
+        public void EmailAddressMinLessOne()
+        {
+            clsStaff aStaff = new clsStaff();
+            String Error = "";
+            string EmailAddress = "a@";
+            Error = aStaff.Valid(StaffID, FullName, UserName, EmailAddress, DOB);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+
+        public void EmailAddressMaxPlusOne()
+        {
+            clsStaff aStaff = new clsStaff();
+            String Error = "";
+            string UserName = "";
+            UserName = UserName.PadRight(321, 'a');
+            Error = aStaff.Valid(StaffID, FullName, UserName, EmailAddress, DOB);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+
+        public void EmailAddressMaxLessOne()
+        {
+            clsStaff aStaff = new clsStaff();
+            String Error = "";
+            string UserName = "";
+            UserName = UserName.PadRight(319, 'a');
+            Error = aStaff.Valid(StaffID, FullName, UserName, EmailAddress, DOB);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+
+        public void EmailAddressMinPlusOne()
+        {
+            clsStaff aStaff = new clsStaff();
+            String Error = "";
+            string UserName = "aa@a";
+            Error = aStaff.Valid(StaffID, FullName, UserName, EmailAddress, DOB);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+
+        public void EmailAddressMid()
+        {
+            clsStaff aStaff = new clsStaff();
+            String Error = "";
+            string UserName = "";
+            UserName = UserName.PadRight(160, 'a');
+            Error = aStaff.Valid(StaffID, FullName, UserName, EmailAddress, DOB);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+
+        public void FullNameMaxExtreme()
+        {
+            clsStaff aStaff = new clsStaff();
+            String Error = "";
+            string UserName = "";
+            UserName = UserName.PadRight(500, 'a');
+            Error = aStaff.Valid(StaffID, FullName, UserName, EmailAddress, DOB);
+            Assert.AreNotEqual(Error, "");
+        }
+
+
+
+
 
     }
 }
