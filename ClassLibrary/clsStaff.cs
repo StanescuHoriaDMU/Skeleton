@@ -129,6 +129,12 @@ namespace ClassLibrary
         {
             String Error = "";
             DateTime DateTemp;
+            DateTime DateMin;
+
+
+            DateMin = DateTime.Now.Date;
+            DateMin = DateMin.AddYears(-100);
+
 
             if (userName.Length == 4) //usernameMinLessOne
             {
@@ -139,15 +145,52 @@ namespace ClassLibrary
                 Error = Error + "Username can not be longer than 16 characters";
             }
 
-            DateTemp = Convert.ToDateTime(DOB);
-            if (DateTemp < DateTime.Now.Date)
+            try
             {
-                Error = Error + "The date cannob be in the past :";
+                DateTemp = Convert.ToDateTime(DOB);
+                if (DateTemp < DateMin)
+                {
+                    Error = Error + "Your date of birth cannot be over 100 years in the past :";
+                }
+                if (DateTemp > DateTime.Now.Date)
+                {
+                    Error = Error + "Your date of birth can not be in the future :";
+                }
+
             }
-            if (DateTemp > DateTime.Now.Date)
+            catch
             {
-                Error = Error + "The date cannot be in the future :";
+                Error = Error + "The date was not a valid date : ";
             }
+
+            if (FullName.Length > 50)
+            {
+                Error = Error + "Full name cannot be longer than 50 characters : ";
+            }
+            if (FullName.Length < 2)
+            {
+                Error = Error + "Full name must be at least 2 characters : ";
+            }
+
+            if (EmailAddress.Length > 320)
+            {
+                Error = Error + "Email address cannot be longer than 320 characters : ";
+            }    
+            if (EmailAddress.Length < 3)
+            {
+                Error = Error + "Email address must be at least 3 characters : ";
+            }
+
+            if (StaffID < 0)
+            {
+                Error = Error + "The staffID must be greater than 0 : ";
+            }
+            if (StaffID > 10000)
+            {
+                Error = Error + "The staffID cannot be greater than 10,000 : ";
+            }
+
+
             return Error;
         }
 
