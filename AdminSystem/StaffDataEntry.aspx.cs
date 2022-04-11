@@ -16,21 +16,29 @@ public partial class _1_DataEntry : System.Web.UI.Page
     protected void btnOK_Click(object sender, EventArgs e)
     {
         clsStaff AStaff = new clsStaff();
-        if (txtStaffNo.Text.Length == 0)
+        string StaffID = txtStaffNo.Text;
+        string FullName = txtFullName.Text;
+        string UserName = txtUserName.Text;
+        string EmailAddress = txtEmailAddress.Text;
+        string DOB = txtDOB.Text;
+
+        string Error = "";
+
+        Error = AStaff.Valid(StaffID, FullName, UserName, EmailAddress, DOB);
+        if (Error == "")
         {
-            AStaff.StaffID = 0;
+            AStaff.StaffID = Convert.ToInt32(StaffID);
+            AStaff.FullName = FullName;
+            AStaff.UserName = UserName;
+            AStaff.EmailAddress = EmailAddress;
+            AStaff.DOB = Convert.ToDateTime(DOB);
+            Session["AStaff"] = AStaff;
+            Response.Write("StaffViewer.aspx");
         }
         else
         {
-            AStaff.StaffID = int.Parse(txtStaffNo.Text);
+            lblError.Text = Error;
         }
-        AStaff.FullName = txtFullName.Text;
-        AStaff.EmailAddress = txtEmailAddress.Text;
-        AStaff.UserName = txtUserName.Text;
-        AStaff.DOB = DateTime.Parse(txtDOB.Text);
-        Session["AStaff"] = AStaff;
-        Response.Redirect("StaffViewer.aspx");
-
     }
 
     protected void btnFind_Click(object sender, EventArgs e)
