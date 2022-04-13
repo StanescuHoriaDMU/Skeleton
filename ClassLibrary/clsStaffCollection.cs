@@ -5,8 +5,12 @@ namespace ClassLibrary
 {
     public class clsStaffCollection
     {
-        private List<clsStaff> mStaffList = new List<clsStaff>();
+
+
+
+        List<clsStaff> mStaffList = new List<clsStaff>();
         clsStaff mThisStaff = new clsStaff();
+
         public List<clsStaff> StaffList
         {
             get
@@ -51,6 +55,7 @@ namespace ClassLibrary
             while (Index < RecordCount)
             {
                 clsStaff AStaff = new clsStaff();
+                AStaff.StaffID = Convert.ToInt32(DB.DataTable.Rows[Index]["StaffID"]);
                 AStaff.IsEmployed = Convert.ToBoolean(DB.DataTable.Rows[Index]["IsEmployed"]);
                 AStaff.FullName = Convert.ToString(DB.DataTable.Rows[Index]["FullName"]);
                 AStaff.UserName = Convert.ToString(DB.DataTable.Rows[Index]["UserName"]);
@@ -62,6 +67,33 @@ namespace ClassLibrary
 
 
         }
+
+        public int Add()
+        {
+            clsDataConnection DB = new clsDataConnection();
+            DB.AddParameter("@StaffID", mThisStaff.StaffID);
+            DB.AddParameter("@IsEmployed", mThisStaff.IsEmployed);
+            DB.AddParameter("@FullName", mThisStaff.FullName);
+            DB.AddParameter("@UserName", mThisStaff.UserName);
+            DB.AddParameter("@DOB", mThisStaff.DOB);
+            DB.AddParameter("@EmailAddress", mThisStaff.EmailAddress);
+
+            return DB.Execute("sproc_tlbStaff_Insert");
+
+        }
+
+        public void Update()
+        {
+            clsDataConnection DB = new clsDataConnection();
+            DB.AddParameter("StaffID", mThisStaff.StaffID);
+            DB.AddParameter("@IsEmployed", mThisStaff.IsEmployed);
+            DB.AddParameter("@FullName", mThisStaff.FullName);
+            DB.AddParameter("@UserName", mThisStaff.UserName);
+            DB.AddParameter("@DOB", mThisStaff.DOB);
+            DB.AddParameter("@EmailAddress", mThisStaff.EmailAddress);
+            DB.Execute("sproc_tblStaff_Update");
+        }
+
 
     }   
 }
