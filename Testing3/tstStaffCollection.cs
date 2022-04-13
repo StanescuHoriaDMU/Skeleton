@@ -37,15 +37,6 @@ namespace Testing3
             Assert.AreEqual(AllStaff.StaffList, TestList);
         }
 
-        [TestMethod]
-
-        public void CountStaffOK() //
-        {
-            clsStaffCollection AllStaff = new clsStaffCollection();
-            Int32 SomeCount = 0;
-            AllStaff.Count = SomeCount;
-            Assert.AreEqual(AllStaff.Count, SomeCount);
-        }
 
 
         [TestMethod]

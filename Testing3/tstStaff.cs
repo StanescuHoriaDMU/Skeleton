@@ -9,7 +9,7 @@ namespace Testing3
     public class tstStaff
     {
 
-        string StaffID = "2";
+        int StaffID = 2;
         string FullName = "Joe bloggs";
         string UserName = "Bloggs123";
         string EmailAddress = "JoeBloggs222@gmail.com";

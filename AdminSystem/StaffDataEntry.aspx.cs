@@ -32,8 +32,15 @@ public partial class _1_DataEntry : System.Web.UI.Page
             AStaff.UserName = UserName;
             AStaff.EmailAddress = EmailAddress;
             AStaff.DOB = Convert.ToDateTime(DOB);
-            Session["AStaff"] = AStaff;
-            Response.Write("StaffViewer.aspx");
+            clsStaffCollection StaffList = new clsStaffCollection();
+            StaffList.ThisStaff = AStaff;
+            StaffList.Add();
+            Response.Redirect("StaffList.aspx");
+        }
+        if (StaffID == "-1")
+        {
+          //  StaffList.ThisStaff = AStaff;
+          //  StaffList.Add();
         }
         else
         {
@@ -71,8 +78,36 @@ public partial class _1_DataEntry : System.Web.UI.Page
             throw new InvalidOperationException("StaffID could not be found");
         }
         
+   
+    }
 
-
+    public partial class AStaff : System.Web.UI.Page
+    {
+        Int32 StaffID;
+        
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            StaffID = Convert.ToInt32(Session["StaffID"]);
+            if (IsPostBack == false)
+            {
+                if (StaffID != -1)
+                {
+                   /// DisplayStaff();
+                }
+            }
+        }
 
     }
+
+    void DisplayStaff()
+    {
+        clsStaffCollection StaffBook = new clsStaffCollection();
+       // StaffBook.ThisStaff.Find(StaffID);
+        txtStaffNo.Text = StaffBook.ThisStaff.StaffID.ToString();
+        txtDOB.Text = StaffBook.ThisStaff.DOB.ToString();
+        txtEmailAddress.Text = StaffBook.ThisStaff.EmailAddress;
+        txtFullName.Text = StaffBook.ThisStaff.FullName;
+        txtUserName.Text = StaffBook.ThisStaff.UserName
+    }
+
 }
