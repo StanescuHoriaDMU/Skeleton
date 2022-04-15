@@ -159,22 +159,22 @@ namespace Testing3
 
         [TestMethod]
 
-        public void ReportByFullNameDataFount()
+        public void ReportByFullNameDataFound()
         {
             clsStaffCollection FilteredStaff = new clsStaffCollection();
             Boolean OK = true;
-            FilteredStaff.ReportByFullName("ad");
+            FilteredStaff.ReportByFullName("Tyler Ellis");
             if(FilteredStaff.count == 3)
             {
-                if (FilteredStaff.StaffList[0].StaffID != 9)
+                if (FilteredStaff.StaffList[0].StaffID != 1)
                 {
                     OK = false;
                 }
-                if (FilteredStaff.CustomerList[1].StaffID != 10)
+                if (FilteredStaff.CustomerList[1].StaffID != 2)
                 {
                     OK = false;
                 }
-                if (FilteredStaff.CustomerList[2].StaffID != 11)
+                if (FilteredStaff.CustomerList[2].StaffID != 3)
                 {
                     OK = false;
                 }
@@ -185,6 +185,8 @@ namespace Testing3
             }
             Assert.IsTrue(OK);
         }
+
+
 
     }
 }
