@@ -8,12 +8,7 @@ namespace Testing1
     [TestClass]
     public class tstStockList
     {
-        //good test data
-        int vehicleId = 1;
-        string vehicleModel = "Corolla";
-        DateTime vehicleYear = DateTime.Now.Date;
-        DateTime datePostWasAdded = DateTime.Now.Date;
-        double priceTag = 12000.00;
+        
 
         [TestMethod]
 
@@ -121,12 +116,13 @@ namespace Testing1
             //Boolean variable to store the results of the validation
             Boolean Found = false;
             //create some test data to use with the method
-            Int32 VehicleId = 1;
+            Int32 VehicleId = 5;
             //invoke the method
             Found = AStock.Find(VehicleId);
             //test to see if the result is true
             Assert.IsTrue(Found);
         }
+
 
         [TestMethod]
         public void TestVehicleIDFound()

@@ -19,6 +19,6 @@ public partial class _1_ConfirmDelete : System.Web.UI.Page
         clsStaffCollection StaffBook = new clsStaffCollection();
         StaffBook.ThisStaff.Find(StaffID);
         StaffBook.Delete();
-        Response.Redirect("StaffList.aspx")
+        Response.Redirect("StaffList.aspx");
     }
 }
