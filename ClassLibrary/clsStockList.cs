@@ -108,7 +108,7 @@ public class clsStockList
         //add the parameter for the staff no to search for
         DB.AddParameter("@VehicleId", VehicleId);
         //execute the stored procedure
-        DB.Execute("sproc_tblStock_FilterByVehicleNo");
+        DB.Execute("sproc_tblStock_FilterByVehicleId");
         //if one record is found (there should either be one or zero!)
         if (DB.Count == 1)
         {
