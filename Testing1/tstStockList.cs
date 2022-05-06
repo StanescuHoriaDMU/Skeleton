@@ -8,12 +8,7 @@ namespace Testing1
     [TestClass]
     public class tstStockList
     {
-        //good test data
-        int vehicleId = 1;
-        string vehicleModel = "Corolla";
-        DateTime vehicleYear = DateTime.Now.Date;
-        DateTime datePostWasAdded = DateTime.Now.Date;
-        double priceTag = 12000.00;
+        
 
         [TestMethod]
 
@@ -121,12 +116,13 @@ namespace Testing1
             //Boolean variable to store the results of the validation
             Boolean Found = false;
             //create some test data to use with the method
-            Int32 VehicleId = 1;
+            Int32 VehicleId = 5;
             //invoke the method
             Found = AStock.Find(VehicleId);
             //test to see if the result is true
             Assert.IsTrue(Found);
         }
+
 
         [TestMethod]
         public void TestVehicleIDFound()
@@ -196,5 +192,85 @@ namespace Testing1
             //test to see that the result is correct
             Assert.IsTrue(OK);
         }
+
+        [TestMethod]
+        public void TestYearOfVehicleFound()
+        {
+            //create an instance of the class we want to create
+            clsStockList AStock = new clsStockList();
+            //boolean variable to store the result of the search
+            Boolean Found = false;
+            //boolean variable to record if data is OK (assume it is)
+            Boolean OK = true;
+            //create some test data to use with the method
+            Int32 VehicleId =1;
+            //invoke the method
+            Found = AStock.Find(VehicleId);
+            //check the property
+            if (AStock.YOV != Convert.ToDateTime("01/01/2015"))
+            {
+                OK = false;
+            }
+            //test to see that the result is correct
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+        public void VehicleModelFound()
+        {
+            //create an instance of the class we want to create
+            clsStockList AStock = new clsStockList();
+            //boolean variable to store the result of the search
+            Boolean Found = false;
+            //boolean variable to record if data is OK (assume it is)
+            Boolean OK = true;
+            //create some test data to use with the method
+            Int32 ShoeID = 5;
+            //invoke the method
+            Found = AStock.Find(ShoeID);
+            //check the property
+            if (AStock.Vmodel != "bmw")
+            {
+                OK = false;
+            }
+            //test to see that the result is correct
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+        public void TestIsSold()
+        {
+            //create an instance of the class we want to create
+            clsStockList AStock = new clsStockList();
+            //boolean variable to store the result of the search
+            Boolean Found = false;
+            //boolean variable to record if data is OK (assume it is)
+            Boolean OK = true;
+            //create some test data to use with the method
+            Int32 ShoeID = 5;
+            //invoke the method
+            Found = AStock.Find(ShoeID);
+            //check the property
+            if (AStock.Sold != true)
+            {
+                OK = false;
+            }
+            //test to see that the result is correct
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+        public void ValidMethodOK()
+        {
+            //create an instance of the class we want to create
+            clsStockList AStock = new clsStockList();
+            //string variable to store any error message
+            String Error = "";
+            //invoke the method
+            Error = AStock.Valid(vehicleId,model,YOV,datePostWasAdded,price);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
     }
     }

@@ -91,44 +91,40 @@ public class clsStockList
             mYear = value;
         }
     }
+  
 
-    public bool Find(int vehicleID)
-    {/*
-       mVehicleId = 1;
-        mDatePostWasAdded = DateTime.Now.Date;
-        mPriceTag = 12000;
-        mVmodel = "BMW 1 - Series";
-        mYear = DateTime.Now.Date;
-        mSold = false;
-        return true;
-        */
-        
+  public bool Find(int VehicleId)
+    {
         //create an instance of the data connection
         clsDataConnection DB = new clsDataConnection();
-        //add the parameter for the staff no to search for
+        //add the parameter for the shoe id to search for
         DB.AddParameter("@VehicleId", VehicleId);
         //execute the stored procedure
         DB.Execute("sproc_tblStock_FilterByVehicleId");
-        //if one record is found (there should either be one or zero!)
+        //if one record is found (there should be either one or zero)
         if (DB.Count == 1)
         {
             //copy the data from the database to the private data members
-            mVehicleId = Convert.ToInt32(DB.DataTable.Rows[0]["vehicleID"]);
+            mVehicleId = Convert.ToInt32(DB.DataTable.Rows[0]["VehicleId"]);
             mDatePostWasAdded = Convert.ToDateTime(DB.DataTable.Rows[0]["DatePostWasAdded"]);
-            mPriceTag = (double)Convert.ToDecimal(DB.DataTable.Rows[0]["PriceTag"]);
             mVmodel = Convert.ToString(DB.DataTable.Rows[0]["Vehicle Model"]);
-            mSold = Convert.ToBoolean(DB.DataTable.Rows[0]["Is Sold"]);
+            mPriceTag = Convert.ToInt32(DB.DataTable.Rows[0]["Price"]);
             mYear = Convert.ToDateTime(DB.DataTable.Rows[0]["Year Of Vehicle"]);
+            mSold = Convert.ToBoolean(DB.DataTable.Rows[0]["Is Sold"]);
+
+            //return that everything worked OK
             return true;
         }
-        //if no record was found
+        //if no record is found
         else
         {
             //return false indicating a problem
             return false;
         }
-        
     }
+
+
+
     public string Valid(string vehicleId, string model, string YOV, string datePostWasAdded, string price)
     {
         String Error = "";

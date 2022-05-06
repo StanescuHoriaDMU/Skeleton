@@ -6,5 +6,7 @@ namespace ClassLibrary
     public class clsStockCollection
     {
         public List<clsStockList> stockList;
+
+        public object ThisStock { get; set; }
     }
 }

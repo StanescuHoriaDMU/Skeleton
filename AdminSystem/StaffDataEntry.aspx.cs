@@ -107,7 +107,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
         txtDOB.Text = StaffBook.ThisStaff.DOB.ToString();
         txtEmailAddress.Text = StaffBook.ThisStaff.EmailAddress;
         txtFullName.Text = StaffBook.ThisStaff.FullName;
-        txtUserName.Text = StaffBook.ThisStaff.UserName
+        txtUserName.Text = StaffBook.ThisStaff.UserName;
     }
 
 }
