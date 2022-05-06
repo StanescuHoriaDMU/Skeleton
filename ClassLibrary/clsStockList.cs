@@ -2,11 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+
 
 public class clsStockList
 {
-    
     private int mVehicleId;
     private DateTime mDatePostWasAdded;
     private double mPriceTag;
@@ -93,64 +92,122 @@ public class clsStockList
         }
     }
 
-    public bool Find(int VehicleId)
-    {
-        // set the private data members to the test data value 
-        mVehicleId = 1;
-        mDatePostWasAdded = Convert.ToDateTime("01/01/2015");
-        mPriceTag = 22000;
+    public bool Find(int vehicleID)
+    {/*
+       mVehicleId = 1;
+        mDatePostWasAdded = DateTime.Now.Date;
+        mPriceTag = 12000;
+        mVmodel = "BMW 1 - Series";
+        mYear = DateTime.Now.Date;
         mSold = false;
-        mVmodel = "bmw";
-        mYear = Convert.ToDateTime("01/01/2013");
-        //always returns true
         return true;
+        */
+        
+        //create an instance of the data connection
+        clsDataConnection DB = new clsDataConnection();
+        //add the parameter for the staff no to search for
+        DB.AddParameter("@VehicleId", VehicleId);
+        //execute the stored procedure
+        DB.Execute("sproc_tblStock_FilterByVehicleNo");
+        //if one record is found (there should either be one or zero!)
+        if (DB.Count == 1)
+        {
+            //copy the data from the database to the private data members
+            mVehicleId = Convert.ToInt32(DB.DataTable.Rows[0]["vehicleID"]);
+            mDatePostWasAdded = Convert.ToDateTime(DB.DataTable.Rows[0]["DatePostWasAdded"]);
+            mPriceTag = (double)Convert.ToDecimal(DB.DataTable.Rows[0]["PriceTag"]);
+            mVmodel = Convert.ToString(DB.DataTable.Rows[0]["Vehicle Model"]);
+            mSold = Convert.ToBoolean(DB.DataTable.Rows[0]["Is Sold"]);
+            mYear = Convert.ToDateTime(DB.DataTable.Rows[0]["Year Of Vehicle"]);
+            return true;
+        }
+        //if no record was found
+        else
+        {
+            //return false indicating a problem
+            return false;
+        }
+        
     }
     public string Valid(string vehicleId, string model, string YOV, string datePostWasAdded, string price)
     {
-        //create a string variable to store the error
         String Error = "";
-        //temporary variable to store date values
         DateTime DateTemp;
-        //if the vehcileId is blank 
-        if (vehicleId.Length == 0)
+        DateTime DateMin;
+
+
+        DateMin = DateTime.Now.Date;
+        DateMin = DateMin.AddYears(-100);
+
+
+        if (Vmodel.Length == 4) //usernameMinLessOne
         {
-            //record error
-            Error = Error + "The VehicleId may not be blank: ";
+            Error = Error + "Username must be at least 5 characters : ";
         }
-        if (vehicleId.Length > 6)
+        if (Vmodel.Length > 50)
         {
-            //record error
-            Error = Error + "The VehicleId must be less than 50 characters";
+            Error = Error + "Username can not be longer than 50 characters";
         }
-        //return error message
-        return Error;
 
         try
         {
-            DateTemp = Convert.ToDateTime(datePostWasAdded);
-            if (DateTemp < DateTime.Now.Date)
+            DateTemp = Convert.ToDateTime(this.YOV);
+            if (DateTemp < DateMin)
             {
-                Error = Error + "The date cannot be over 100 years in the past :";
+                Error = Error + "Your year of vehicle cannot be over 100 years in the past :";
             }
             if (DateTemp > DateTime.Now.Date)
             {
-                Error = Error + "The date cannot be in the future :";
+                Error = Error + "Your year of vehicle can not be in the future :";
             }
-        }
 
+        }
         catch
         {
             Error = Error + "The date was not a valid date : ";
         }
 
-        if (datePostWasAdded.Length < 1)
+        try
         {
-            Error = Error + "Full name must be at least 2 characters : ";
+            DateTemp = Convert.ToDateTime(DatePostWasAdded);
+            if (DateTemp < DateMin)
+            {
+                Error = Error + "Your advert cannot be over 100 years in the past :";
+            }
+            if (DateTemp > DateTime.Now.Date)
+            {
+                Error = Error + "Your advert can not be in the future :";
+            }
+
         }
-        if (datePostWasAdded.Length > 50)
+        catch
         {
-            Error = Error + "Full name must be no longer than 50 characters :";
+            Error = Error + "The date was not a valid date : ";
         }
+        if (PriceTag < 500 )
+        {
+            Error = Error + "price can not be less than 500 : ";
+        }
+
+        if (PriceTag < 7)
+        {
+            Error = Error + "price can not be 7 chracacters long";
+        }
+        if (PriceTag == 0)
+        {
+            Error = Error + "price value can not be 0";
+        }
+
+        if (VehicleId < 0)
+        {
+            Error = Error + "The staffID must be greater than 0 : ";
+        }
+        if (VehicleId > 10000)
+        {
+            Error = Error + "The staffID cannot be greater than 10,000 : ";
+        }
+
+
         return Error;
     }
 

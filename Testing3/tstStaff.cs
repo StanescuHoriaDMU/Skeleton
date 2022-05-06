@@ -407,7 +407,7 @@ namespace Testing3
             String Error = "";
             DateTime TestDate;
             TestDate = DateTime.Now.Date;
-            TestDate = TestDate.AddYears(-100)
+            TestDate = TestDate.AddYears(-100);
             string DOB = TestDate.ToString();
             Error = AStaff.Valid(StaffID, FullName, UserName, EmailAddress, DOB);
             Assert.AreEqual(Error, "");
@@ -421,7 +421,7 @@ namespace Testing3
             String Error = "";
             DateTime TestDate;
             TestDate = DateTime.Now.Date;
-            TestDate = TestDate.AddYears(-50)
+            TestDate = TestDate.AddYears(-50);
             string DOB = TestDate.ToString();
             Error = AStaff.Valid(StaffID, FullName, UserName, EmailAddress, DOB);
             Assert.AreEqual(Error, "");
