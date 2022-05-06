@@ -25,7 +25,7 @@ public partial class _1_ConfirmDelete : System.Web.UI.Page
         //capture the Vehicle Id
         aStock.Vmodel = txtVehicleNo.Text;
         //store the Vehicle Id in the session object
-        Session["aStock"] = aStock;        
+        Session["aStock"] = aStock;
         //navigate to viewer page
         Response.Redirect("StockConfirmDelete.aspx");
     }

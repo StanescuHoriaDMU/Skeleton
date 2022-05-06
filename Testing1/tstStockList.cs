@@ -1,6 +1,7 @@
 ﻿using ClassLibrary;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.Collections.Generic;
 
 namespace Testing1
 {
@@ -8,6 +9,7 @@ namespace Testing1
     public class tstStockList
     {
         [TestMethod]
+
         public void InstanceOK()
         {
             //creat a new instance of the new class we want to create 
@@ -15,7 +17,10 @@ namespace Testing1
             //test to see that it exists 
             Assert.IsNotNull(aStock);
         }
-        
+
+       
+
+        [TestMethod]
         public void ModelOK()
         {
             // create a new instance of the class we want to create 
@@ -27,19 +32,19 @@ namespace Testing1
             //test to see the two values are the same
             Assert.AreEqual(aStock.Vmodel, TestData);
         }
-
-        public void DatePostWasCreated()
+        [TestMethod]
+        public void DatePostWasAdded()
         {
             // create a new instance of the class we want to create 
             clsStockList aStock = new clsStockList();
             // create some test data to assign to the property
             DateTime TestData = DateTime.Now.Date;
             //assign the data to the property 
-            aStock.DateAdded = TestData;
+            aStock.DatePostWasAdded = TestData;
             //test to see that the two values are the same
-            Assert.AreEqual(aStock.DateAdded, TestData);
+            Assert.AreEqual(aStock.DatePostWasAdded, TestData);
         }
-
+        [TestMethod]
         public void YearOfVehicle()
         {
             // create a new instance of the class we want to create 
@@ -47,11 +52,11 @@ namespace Testing1
             // create some test data to assign to the property
             DateTime TestData = DateTime.Now.Date;
             //assign the data to the property 
-            aStock.DateAdded = TestData;
+            aStock.YOV = TestData;
             //test to see that the two values are the same
-            Assert.AreEqual(aStock.DateAdded, TestData);
+            Assert.AreEqual(aStock.YOV, TestData);
         }
-
+        [TestMethod]
         public void PriceOfVehicle()
         {
             // create a new instance of the class we want to create 
@@ -63,7 +68,7 @@ namespace Testing1
             //test to see that the two values are the same
             Assert.AreEqual(aStock.PriceTag, TestData);
         }
-
+        [TestMethod]
         public void IsSold()
         {
             // create a new instance of the class we want to create 
@@ -75,6 +80,6 @@ namespace Testing1
             //test to see that the two values are the same
             Assert.AreEqual(aStock.Sold, TestData);
         }
-
+         
     }
     }
